@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+
+    <style>
+        body {
+            margin-bottom: 100px;
+        }
+
+        .custom-input-alert {
+            background-color: #ffffff;
+        }
+
+        .custom-input-alert:placeholder-shown {
+            background-color: #ffa5a5;
+        }
+    </style>
+</head>
+
+<header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <img src="https://i.imgur.com/z4gMSNl.png" alt="Logo" style="width: 80%; height: 30%;">
+        </div>
+        <div>
+            <h1>Sistema de Registro de Licencias</h1>
+            <p>Bienvenido a el Sistema de Registro de Licencias</p>
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-dark bg-secondary py-1">
+    <div class="container d-flex justify-content-center">
+        <span class="navbar-text fw-bold fs-6 text-dark text-center">
+            SISTEMA DE REGISTRO DE LICENCIAS ÚNICAMENTE PARA ASIGNATURAS DE LA CARRERA DE INGENIERÍA MECATRÓNICA
+            (SIGLA-IMT)
+        </span>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <h2>Registro de estudiante</h2>
+        {% if messages %}
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1000;">
+            <div id="toast-container" class="toast-container p-3 bottom-0 end-0">
+                {% for message in messages %}
+                <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ message }}
+                        </div>
+                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Inicialización del Toast con JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var toast = new bootstrap.Toast(document.querySelector('.toast'), {
+                    autohide: false // Puedes ajustar otras opciones según tus necesidades
+                });
+                toast.show(); // Muestra el Toast
+            });
+        </script>
+        {% endif %}
+        <form method="POST" id="form-permisos" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if msg3 %}
+            <div class="alert alert-danger d-flex justify-content-center" role="alert">
+                {{ msg3 }}
+            </div>
+            {% endif %}
+            <div class="row g-3 mb-4">
+                <div class="fieldWrapper col">
+                    <div class="input-group flex-nowrap">
+                        {{ form.nombre.errors }}
+                        <label for="{{ form.nombre.id_for_label }}" class="input-group-text">Nombre(s):</label>
+                        {% if msg %}
+                        <input type="text" name="{{ form.nombre.html_name }}" required
+                            id="{{ form.nombre.id_for_label }}" class="form-control custom-input-alert"
+                            placeholder="{{ msg }}" aria-label="Ej: Diego Andrés" aria-describedby="addon-wrapping" />
+                        {% else %}
+                        <input type="text" name="{{ form.nombre.html_name }}" required
+                            id="{{ form.nombre.id_for_label }}" class="form-control" placeholder="Ej: Diego Andrés"
+                            aria-label="Ej: Diego Andrés" aria-describedby="addon-wrapping" />
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="fieldWrapper col">
+                    <div class="input-group flex-nowrap">
+                        {{ form.apellido.errors }}
+                        <label for="{{ form.apellido.id_for_label }}" class="input-group-text">Apellido(s):</label>
+                        {% if msg1 %}
+                        <input type="text" name="{{ form.apellido.html_name }}" required
+                            id="{{ form.apellido.id_for_label }}" class="form-control custom-input-alert"
+                            placeholder="{{ msg1 }}" aria-label="Ej: Calvimontes Vera"
+                            aria-describedby="addon-wrapping" />
+                        {% else %}
+                        <input type="text" name="{{ form.apellido.html_name }}" required
+                            id="{{ form.apellido.id_for_label }}" class="form-control"
+                            placeholder="Ej: Calvimontes Vera" aria-label="Ej: Calvimontes Vera"
+                            aria-describedby="addon-wrapping" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="fieldWrapper">
+                <div class="input-group flex-nowrap mb-4">
+                    {{ form.email.errors }}
+                    <label for="{{ form.email.id_for_label }}" class="input-group-text">Correo electrónico:</label>
+                    {% if msg2 %}
+                    <input type="email" name="{{ form.email.html_name }}" required id="{{ form.email.id_for_label }}"
+                        class="form-control custom-input-alert" placeholder="{{ msg2 }}"
+                        aria-label="Ej: example@ucb.edu.bo" aria-describedby="addon-wrapping" autocomplete="off" />
+                    {% else %}
+                    <input type="email" name="{{ form.email.html_name }}" required id="{{ form.email.id_for_label }}"
+                        class="form-control" placeholder="Ej: example@ucb.edu.bo" aria-label="Ej: example@ucb.edu.bo"
+                        aria-describedby="addon-wrapping" autocomplete="off" />
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="fieldWrapper col">
+                    <div class="input-group flex-nowrap">
+                        {{ form.ci.errors }}
+                        <label for="{{ form.ci.id_for_label }}" class="input-group-text">Cédula de identidad:</label>
+                        <input type="number" name="{{ form.ci.html_name }}" required id="{{ form.ci.id_for_label }}"
+                            class="form-control" placeholder="Ej: 7511821" aria-label="Ej: 7511821"
+                            aria-describedby="addon-wrapping" />
+                    </div>
+                </div>
+                <div class="fieldWrapper col">
+                    <div class="input-group flex-nowrap">
+                        <label for="id_permisos-0-justificacion"
+                            class="input-group-text {% if msg_pdf %}bg-danger{% endif %}">
+                            {% if msg_pdf %}{{ msg_pdf }}{% else %}Ingrese PDF{% endif %}
+                        </label>
+                        <input type="file" name="permisos-0-justificacion" required id="id_permisos-0-justificacion"
+                            class="form-control" aria-describedby="addon-wrapping" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <h3>Descripción:</h3>
+                <div class="form-check col">
+                    <input class="form-check-input" type="radio" value="Salud" name="flexRadioDefault" id="motivo" />
+                    <label class="form-check-label" for="motivo">
+                        Salud
+                    </label>
+                </div>
+                <div class="form-check col">
+                    <input class="form-check-input" type="radio" value="Actividad académica" name="flexRadioDefault"
+                        id="motivo" />
+                    <label class="form-check-label" for="motivo">
+                        Actividad académica
+                    </label>
+                </div>
+                <div class="form-check col">
+                    <input class="form-check-input" type="radio" value="Actividad deportiva/cultural"
+                        name="flexRadioDefault" id="motivo" />
+                    <label class="form-check-label" for="motivo">
+                        Actividad deportiva/cultural
+                    </label>
+                </div>
+                <div class="form-check col">
+                    <input class="form-check-input" type="radio" value="Asunto familiar" name="flexRadioDefault"
+                        id="motivo" />
+                    <label class="form-check-label" for="motivo">
+                        Asunto familiar
+                    </label>
+                </div>
+                <div class="form-check col">
+                    <input class="form-check-input" type="radio" value="Otro" name="flexRadioDefault" id="motivo"
+                        checked />
+                    <label class="form-check-label" for="motivo">
+                        Otro
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="input-group">
+                    <label for="id_permisos-0-descripcion" class="input-group-text">Descripción:</label>
+                    <textarea name="permisos-0-descripcion" id="id_permisos-0-descripcion" class="form-control" rows="3"
+                        aria-label="Descripción" autocomplete="off" required></textarea>
+                </div>
+            </div>
+
+            <div>
+                <h2>Registro de materias</h2>
+                <div class="alert alert-danger" role="alert">
+                    Tomar en encuenta que si su dispositivo es iOS, al presionar el campo de fecha, este mostrará la
+                    fecha actuál y no podrá cambiarla.
+                    Lamentamos los inconvenientes. Estamos trabajando para corregirlo.
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Materia</th>
+                            <th scope="col">Hora de inicio</th>
+                            <th scope="col">Hora de fin</th>
+                            <th scope="col">Fecha
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="permisos-cuerpo">
+                        {{ formset.management_form }}
+                        <tr class="permiso-fila">
+                            <th scope="row">1</th>
+                            <td>
+                                <label for="id_permisos-0-materia"></label>
+                                <select class="form-select" name="permisos-0-materia"
+                                    aria-label="Default select example">
+                                    <option selected>-</option>
+                                    <option value="Automatización Industrial">Automatización Industrial</option>
+                                    <option value="Autotrónica">Autotrónica</option>
+                                    <option value="Circuitos Digitales">Circuitos Digitales</option>
+                                    <option value="Circuitos Electrónicos I">Circuitos Electrónicos I</option>
+                                    <option value="Circuitos Electrónicos II">Circuitos Electrónicos II</option>
+                                    <option value="Circuitos Electrónicos III">Circuitos Electrónicos III</option>
+                                    <option value="Control I">Control I</option>
+                                    <option value="Control II">Control II</option>
+                                    <option value="Diseño de Máquinas">Diseño de Máquinas</option>
+                                    <option value="Diseño Superior de Ingenieria">Diseño Superior de Ingenieria</option>
+                                    <option value="Electrónica de Potencia">Electrónica de Potencia</option>
+                                    <option value="Fundamentos de Control">Fundamentos de Control</option>
+                                    <option value="Instrumentación Industrial">Instrumentación Industrial</option>
+                                    <option value="Introducción a la Ing. Mecatrónica">Introducción a la Ing.
+                                        Mecatrónica</option>
+                                    <option value="Manufatura Integrada">Manufatura Integrada</option>
+                                    <option value="Máquinas Eléctricas">Máquinas Eléctricas</option>
+                                    <option value="Mecanismos">Mecanismos</option>
+                                    <option value="Neumática e Hidráulica">Neumática e Hidráulica</option>
+                                    <option value="Prácticas Preprofesionales">Prácticas Preprofesionales</option>
+                                    <option value="Programación Superior">Programación Superior</option>
+                                    <option value="Prototipado Rápido">Prototipado Rápido</option>
+                                    <option value="Robótica">Robótica</option>
+                                    <option value="Señales y Sistemas">Señales y Sistemas</option>
+                                    <option value="Sistemas Embebidos I">Sistemas Embebidos I</option>
+                                    <option value="Sistemas Embebidos II">Sistemas Embebidos II</option>
+                                    <option value="Taller de Grado I">Taller de Grado I</option>
+                                    <option value="Taller de Grado II">Taller de Grado II</option>
+                                    <option value="Tecnología Mecánica">Tecnología Mecánica</option>
+                                    <option value="Visión Artificial">Visión Artificial</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="id_permisos-0-horaInicio"></label>
+                                <select name="permisos-0-horaInicio" aria-describedby="addon-wrapping"
+                                    class="form-select" required>
+                                    <option value="07:15">07:15</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="07:45">07:45</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:15">08:15</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="08:45">08:45</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:15">09:15</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="09:45">09:45</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:15">10:15</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="10:45">10:45</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:15">11:15</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="11:45">11:45</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:15">12:15</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="12:45">12:45</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:15">13:15</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="13:45">13:45</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:15">14:15</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="14:45">14:45</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:15">15:15</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="15:45">15:45</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:15">16:15</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="16:45">16:45</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:15">17:15</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="17:45">17:45</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:15">18:15</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="18:45">18:45</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:15">19:15</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="19:45">19:45</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:15">20:15</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="20:45">20:45</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:15">21:15</option>
+                                    <option value="21:30">21:30</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="id_permisos-0-horaFin"></label>
+                                <select name="permisos-0-horaFin" aria-describedby="addon-wrapping" class="form-select"
+                                    required>
+                                    <option value="07:15">07:15</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="07:45">07:45</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:15">08:15</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="08:45">08:45</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:15">09:15</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="09:45">09:45</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:15">10:15</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="10:45">10:45</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:15">11:15</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="11:45">11:45</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:15">12:15</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="12:45">12:45</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:15">13:15</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="13:45">13:45</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:15">14:15</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="14:45">14:45</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:15">15:15</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="15:45">15:45</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:15">16:15</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="16:45">16:45</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:15">17:15</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="17:45">17:45</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:15">18:15</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="18:45">18:45</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:15">19:15</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="19:45">19:45</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:15">20:15</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="20:45">20:45</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:15">21:15</option>
+                                    <option value="21:30">21:30</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="id_permisos-0-fecha"></label>
+                                <input type="text" name="permisos-0-fecha" id="dateInput-0"
+                                    class="form-control date-input" placeholder="Seleccione una fecha"
+                                    autocomplete="off" required>
+                                <!-- <input type="date" name="permisos-0-fecha" class="form-control date-input" required /> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <!-- <button type="button" class="btn btn-outline-dark col-md-2" id="guardar-registro" data-bs-toggle="modal"
+                    data-bs-target="#confirmarModal">Registrar permiso</button> -->
+                <button type="button" class="btn btn-outline-dark col-md-2" onclick="validarYAbrirModal()">Registrar
+                    licencia</button>
+                <div class="col-md-9"></div>
+                <div class="btn-group col-md-1" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-outline-success" id="agregar-materia">+</button>
+                    <button type="button" class="btn btn-outline-danger" id="eliminar-materia">-</button>
+                </div>
+            </div>
+            <div class="modal fade" id="confirmarModal" tabindex="-1" aria-labelledby="confirmarModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmarModalLabel">Aviso de registro</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Está seguro de registrar los datos ingresados?<br />
+                            Si es así, presione el botón "Registar licencia".
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="confirmarGuardar">Registrar
+                                licencia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        window.permisoCount = 0;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'registro/script.js' %}"></script>
+
+</body>
+{% endblock %}

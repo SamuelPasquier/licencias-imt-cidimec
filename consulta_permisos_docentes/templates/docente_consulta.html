@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <title>Consulta Docentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+
+<header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <img src="https://i.imgur.com/z4gMSNl.png" alt="Logo" style="width: 80%; height: 30%;">
+        </div>
+        <div>
+            <h1>Sistema de Consulta de Licencias para Docentes</h1>
+            <p>Bienvenido a el Sistema de Consulta de Licencias para Docentes</p>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <select id="inputBusqueda" class="form-select" aria-label="Default select example">
+                    <option selected>-</option>
+                    <option value="Automatización Industrial   ">Automatización Industrial</option>
+                    <option value="Autotrónica   ">Autotrónica</option>
+                    <option value="Circuitos Digitales   ">Circuitos Digitales</option>
+                    <option value="Circuitos Electrónicos I   ">Circuitos Electrónicos I</option>
+                    <option value="Circuitos Electrónicos II   ">Circuitos Electrónicos II</option>
+                    <option value="Circuitos Electrónicos III   ">Circuitos Electrónicos III</option>
+                    <option value="Control I   ">Control I</option>
+                    <option value="Control II   ">Control II</option>
+                    <option value="Diseño de Máquinas   ">Diseño de Máquinas</option>
+                    <option value="Diseño Superior de Ingenieria   ">Diseño Superior de Ingenieria</option>
+                    <option value="Electrónica de Potencia   ">Electrónica de Potencia</option>
+                    <option value="Fundamentos de Control   ">Fundamentos de Control</option>
+                    <option value="Instrumentación Industrial   ">Instrumentación Industrial</option>
+                    <option value="Introducción a la Ing. Mecatrónica   ">Introducción a la Ing.
+                        Mecatrónica</option>
+                    <option value="Manufatura Integrada   ">Manufatura Integrada</option>
+                    <option value="Máquinas Eléctricas   ">Máquinas Eléctricas</option>
+                    <option value="Mecanismos   ">Mecanismos</option>
+                    <option value="Neumática e Hidráulica   ">Neumática e Hidráulica</option>
+                    <option value="Prácticas Preprofesionales   ">Prácticas Preprofesionales</option>
+                    <option value="Programación Superior   ">Programación Superior</option>
+                    <option value="Prototipado Rápido   ">Prototipado Rápido</option>
+                    <option value="Robótica   ">Robótica</option>
+                    <option value="Señales y Sistemas   ">Señales y Sistemas</option>
+                    <option value="Sistemas Embebidos I   ">Sistemas Embebidos I</option>
+                    <option value="Sistemas Embebidos II   ">Sistemas Embebidos II</option>
+                    <option value="Taller de Grado I   ">Taller de Grado I</option>
+                    <option value="Taller de Grado II   ">Taller de Grado II</option>
+                    <option value="Tecnología Mecánica   ">Tecnología Mecánica</option>
+                    <option value="Visión Artificial   ">Visión Artificial</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <select id="inputHoraInicio" class="form-select">
+                    <option value="">--:--</option>
+                    <option value="07:15">07:15</option>
+                    <option value="07:30">07:30</option>
+                    <option value="07:45">07:45</option>
+                    <option value="08:00">08:00</option>
+                    <option value="08:15">08:15</option>
+                    <option value="08:30">08:30</option>
+                    <option value="08:45">08:45</option>
+                    <option value="09:00">09:00</option>
+                    <option value="09:15">09:15</option>
+                    <option value="09:30">09:30</option>
+                    <option value="09:45">09:45</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:15">10:15</option>
+                    <option value="10:30">10:30</option>
+                    <option value="10:45">10:45</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:15">11:15</option>
+                    <option value="11:30">11:30</option>
+                    <option value="11:45">11:45</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:15">15:15</option>
+                    <option value="15:30">15:30</option>
+                    <option value="15:45">15:45</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:15">16:15</option>
+                    <option value="16:30">16:30</option>
+                    <option value="16:45">16:45</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:15">17:15</option>
+                    <option value="17:30">17:30</option>
+                    <option value="17:45">17:45</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:15">18:15</option>
+                    <option value="18:30">18:30</option>
+                    <option value="18:45">18:45</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:15">19:15</option>
+                    <option value="19:30">19:30</option>
+                    <option value="19:45">19:45</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:15">20:15</option>
+                    <option value="20:30">20:30</option>
+                    <option value="20:45">20:45</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:15">21:15</option>
+                    <option value="21:30">21:30</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <select id="inputEstado" class="form-select">
+                    <option value="">--Seleccione Estado--</option>
+                    <option value="Aceptado">Aceptado</option>
+                    <option value="Rechazado">Rechazado</option>
+                    <option value="Observado">Observado</option>
+                    <option value="Pendiente">Pendiente</option>
+                </select>
+            </div>            
+        </div>
+        <div class="accordion" id="accordionExample">
+            {% for id_solicitud, permiso in permisos.items %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ id_solicitud }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ id_solicitud }}" aria-expanded="false"
+                        aria-controls="collapse{{ id_solicitud }}">
+                        {{ permiso.estudiante }}
+                    </button>
+                </h2>
+                <div id="collapse{{ id_solicitud }}" class="accordion-collapse collapse"
+                    aria-labelledby="heading{{ id_solicitud }}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {% for materias in permiso.materias %}
+                        <div class="permiso mb-3">
+                            <div class="row">
+                                <div class="materia col-md-6"> <strong>Materia:</strong> {{ materias.materia }}<br />
+                                </div>
+                                <div class="col-md-6"><strong>Fecha:</strong> {{ materias.fecha }}<br /></div>
+                            </div>
+                            <div class="row">
+                                <div class="horaInicio col-md-6">
+                                    <strong>Hora de inicio:</strong> {{ materias.horaInicio }}<br />
+                                </div>
+                                <div class="col-md-6"><strong>Hora de fin:</strong> {{ materias.horaFin }}<br /></div>
+                            </div>
+                            <div class="row">
+                                <div class="estado col-md-12">
+                                    <strong>Estado:</strong>
+                                    {% if materias.estado == 'Aceptado' %}
+                                        <font color="green">{{ materias.estado }}</font>
+                                    {% elif materias.estado == 'Rechazado' %}
+                                        <font color="red">{{ materias.estado }}</font>
+                                    {% elif materias.estado == 'Observado' %}
+                                        <font color="blue">{{ materias.estado }}</font>
+                                    {% elif materias.estado == 'Pendiente' %}
+                                        <font color="orange">{{ materias.estado }}</font>
+                                    {% endif %}
+                                    <br /> 
+                                </div>
+                            </div>
+                            {% if not forloop.last %}
+                            <hr>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'consulta_permisos_docentes/script.js' %}"></script>
+</body>
+
+</html>
