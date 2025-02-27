@@ -12,32 +12,32 @@ from django.conf import settings
 def admin_user_check(user):
     return user.is_authenticated and user.is_staff
 
-def send_notification_email(estudiante_nombre, estado, email, materia):
+# def send_notification_email(estudiante_nombre, estado, email, materia):
     
-    subject = f'Actualización de estado de solicitud de licencia'
-    #subject2 = f'Estudiante: {estudiante_nombre}; Actualización de estado de solicitud de licencia'
-    materias_str = ', '.join(materia)
-    #message_inge = (f"La solicitud de licencia realiza por el/la estudiante: {estudiante_nombre} fue "
-    #                f"{estado} en la(s) materia(s) de {materias_str}. \n\n"
-    #                "Saludos cordiales.")
-    if estado != 'Observado':
-        message = (f"Estimado/a {estudiante_nombre},\n\n"
-            f"Te informamos que la solicitud de licencia realizada fue "
-            f"{estado} en la(s) materia(s) de {materias_str}.\n\n"
-            "Saludos cordiales.")
-    else: 
-        message = (f"Estimado/a {estudiante_nombre},\n\n"
-            f"Te informamos que la solicitud de licencia realizada fue "
-            f"{estado} en la(s) materia(s) de {materias_str}.\n\n" 
-            f"Por lo que se deja la consideración de la misma, al/los docente(s) de la(s) materia(s).\n\n"
-            f"En el caso de tener algún documento/justificativo adicional puedes subirlo en la sección de 'Consultas' en la página de Licencia IMT: www.imt.ucb.edu.bo/cidimec/licencias-imt/"
-            f" siguientes dos días. \n\n" 
-            "Saludos cordiales.")
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
+#     subject = f'Actualización de estado de solicitud de licencia'
+#     #subject2 = f'Estudiante: {estudiante_nombre}; Actualización de estado de solicitud de licencia'
+#     materias_str = ', '.join(materia)
+#     #message_inge = (f"La solicitud de licencia realiza por el/la estudiante: {estudiante_nombre} fue "
+#     #                f"{estado} en la(s) materia(s) de {materias_str}. \n\n"
+#     #                "Saludos cordiales.")
+#     if estado != 'Observado':
+#         message = (f"Estimado/a {estudiante_nombre},\n\n"
+#             f"Te informamos que la solicitud de licencia realizada fue "
+#             f"{estado} en la(s) materia(s) de {materias_str}.\n\n"
+#             "Saludos cordiales.")
+#     else: 
+#         message = (f"Estimado/a {estudiante_nombre},\n\n"
+#             f"Te informamos que la solicitud de licencia realizada fue "
+#             f"{estado} en la(s) materia(s) de {materias_str}.\n\n" 
+#             f"Por lo que se deja la consideración de la misma, al/los docente(s) de la(s) materia(s).\n\n"
+#             f"En el caso de tener algún documento/justificativo adicional puedes subirlo en la sección de 'Consultas' en la página de Licencia IMT: www.imt.ucb.edu.bo/cidimec/licencias-imt/"
+#             f" siguientes dos días. \n\n" 
+#             "Saludos cordiales.")
+#     email_from = settings.EMAIL_HOST_USER
+#     recipient_list = [email]
 
-    send_mail(subject, message, email_from, recipient_list)
-    #send_mail(subject2, message_inge, email_from, ["samu28n04@gmail.com"])
+#     send_mail(subject, message, email_from, recipient_list)
+#     #send_mail(subject2, message_inge, email_from, ["samu28n04@gmail.com"])
     
 class AdminOnlyView(LoginRequiredMixin, View):
     login_url = '/cidimec/licencias-imt/login/'
@@ -104,7 +104,7 @@ class AdminOnlyView(LoginRequiredMixin, View):
                 for i in permisos:
                     i.estado = new_status
                     i.save()
-                send_notification_email(nombre+" "+apellido, new_status, email, materia)
+                # send_notification_email(nombre+" "+apellido, new_status, email, materia)
                 
 
             return redirect('petition_list')
