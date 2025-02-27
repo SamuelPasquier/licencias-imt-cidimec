@@ -185,7 +185,7 @@ EMAIL_HOST_PASSWORD = 'C1D1M3C.imt'
 #EMAIL_HOST_PASSWORD = 'wtlg vofh lecj vsmh'
 
 # Media files
-MEDIA_URL = '/cidimec/licencias-imt/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
