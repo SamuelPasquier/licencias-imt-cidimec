@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.http import JsonResponse
-from django.core.mail import send_mail
+#from django.core.mail import send_mail
 from django.conf import settings
 
 def admin_user_check(user):
