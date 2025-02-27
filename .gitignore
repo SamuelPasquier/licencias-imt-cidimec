@@ -1,16 +1,3 @@
-/tmp/
-/venv/
-/.vscode/
-*/__pycache__/
-*.pyc 
-*.pyo
-*.db
-
-*/migrations/
 db.sqlite3
 venv
-settings_local.py
-media/
 __pycache__
-node_modules/
-*.log
