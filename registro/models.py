@@ -42,15 +42,12 @@ class permisos(models.Model):
     fecha = models.DateField()
     horaInicio = models.TimeField()
     horaFin = models.TimeField()
-    justificacion = models.FileField(
-        upload_to=custom_upload_to, null=True, blank=True)
+    justificacion = models.FileField(upload_to=custom_upload_to, null=True, blank=True)
     descripcion = models.TextField(null=True, blank=True)
     comentario = models.TextField(null=True, blank=True, default=' ')
-    justificacion2 = models.FileField(
-        upload_to=custom_upload_to, null=True, blank=True)
+    justificacion2 = models.FileField(upload_to=custom_upload_to, null=True, blank=True)
     fechaSolicitud = models.DateField(auto_now_add=True)
-    estado = models.CharField(
-        max_length=10, choices=STATUS_CHOICES, default='Pendiente')
+    estado = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pendiente')
     project = models.ForeignKey(estudiantes, on_delete=models.CASCADE)
     motivo = models.CharField(max_length=30, choices=CHOICES, default='Otro')
     observaciones = models.TextField(null=True, blank=True)
