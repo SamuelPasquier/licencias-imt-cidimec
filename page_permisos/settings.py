@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os 
 import dj_database_url
+from django.contrib.auth.models import User
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -191,3 +192,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+
+# Verifica si el superusuario ya existe
+SUPERUSER_USERNAME = "fdiaz"
+SUPERUSER_EMAIL = "pepe@gmail.com"
+SUPERUSER_PASSWORD = "C1D1M3C.imt"
+
+if not User.objects.filter(username=SUPERUSER_USERNAME).exists():
+    User.objects.create_superuser(SUPERUSER_USERNAME, SUPERUSER_EMAIL, SUPERUSER_PASSWORD)
+    print("✅ Superusuario creado correctamente.")
+else:
+    print("⚠️ El superusuario ya existe.")
