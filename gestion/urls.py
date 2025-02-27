@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('cidimec/licencias-imt/gestion/', views.AdminOnlyView.as_view(), name='petition_list'),
+    path('/cidimec/licencias-imt/gestion/', views.AdminOnlyView.as_view(), name='petition_list'),
     path('logout/', LogoutView.as_view(), name='logout'),
     #path('update_observation/', views.UpdateObservationView.as_view(), name='update_observation'),
 ]
