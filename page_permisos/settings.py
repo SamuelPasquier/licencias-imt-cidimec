@@ -186,7 +186,7 @@ EMAIL_HOST_PASSWORD = 'C1D1M3C.imt'
 
 # Media files
 MEDIA_URL = '/cidimec/licencias-imt/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 CSRF_COOKIE_SECURE = False
