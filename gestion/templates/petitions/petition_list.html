@@ -93,7 +93,7 @@
                             }
                         </style>
                         <div class="d-flex flex-column mr-5">
-                            <form method="post" action="{% url 'petition_list' %}">
+                            <form method="post" action="/">
                                 {% csrf_token %}
                                 <input type="hidden" name='permisoid_solicitud'
                                     value="{{ permiso.permiso.id_solicitud }}">
