@@ -145,7 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'cidimec/licencias-imt/static_files/'
+STATIC_URL = '/cidimec/licencias-imt/static_files/'
 STATICFILES_DIRS = [
     BASE_DIR / 'registro/static',
 ]
@@ -185,7 +185,7 @@ EMAIL_HOST_PASSWORD = 'C1D1M3C.imt'
 #EMAIL_HOST_PASSWORD = 'wtlg vofh lecj vsmh'
 
 # Media files
-MEDIA_URL = 'media/'
+MEDIA_URL = '/cidimec/licencias-imt/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
